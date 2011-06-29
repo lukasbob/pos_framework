@@ -1,0 +1,819 @@
+/* @group Reset from meyerweb */
+/*http://meyerweb.com/eric/tools/css/reset/*//*v1.0|20080212*/html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent;}body{line-height:1;}ol,ul{list-style:none;}blockquote,q{quotes:none;}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}/*remembertodefinefocusstyles!*/:focus{outline:0;}/*remembertohighlightinsertssomehow!*/ins{text-decoration:none;}del{text-decoration:line-through;}/*tablesstillneed'cellspacing="0"'inthemarkup*/table{border-collapse:collapse;border-spacing:0;}
+/* @end */
+
+body {
+	font: .75em/1.4545 'lucida grande', tahoma, arial, sans-serif; /*12px*/	
+}
+a:focus {
+	outline: 2px solid #09f;	
+}
+
+/* @group Layout/positioning */
+
+/**
+ * .rel: Relatively positioned container, enabling contained position: absolute;
+ */
+ .rel {
+	position: relative;
+	display: block;
+	/*IE fix*/
+	zoom: 1;
+ }
+
+/**
+ * .abs: element absolutely positioned.
+ */ 
+.abs { position: absolute; }
+
+/**
+ * .t: element absolutely positioned top.
+ */ 
+.abs.t { top: 0; }
+
+/**
+ * .b: element absolutely positioned bottom.
+ */ 
+.abs.b { bottom: 0; }
+
+/**
+ * .l: element absolutely positioned left.
+ */ 
+.abs.l { left: 0; }
+
+/**
+ * .r: element absolutely positioned right.
+ */ 
+.abs.r { right: 0; }
+
+/**
+ * .full: element absolutely positioned top.
+ */ 
+.full { height: 100%; }
+
+/* @end */
+
+/* @group Shared data container for all views */
+
+.data { overflow: auto; }
+/*Toolbar on top*/
+.tbtop { padding-bottom: 29px; }
+.tbtop .data { top: 29px; }
+/*Toolbar at the bottom*/
+.tbbtm { padding-top: 29px; }
+.tbbtm .data { bottom: 29px; }
+
+/* @end */
+
+/* @group Split view */
+
+/* Options for the splitview:
+	* vertical/horizontal
+	* Layout lock: t r b l
+	* Resize true/false
+	* If resize: containment margin from container
+	* Margin
+	* Split anchor: vertical: t/b, horizontal: r/l
+	* Initial split position from split anchor: 
+		* 250px (absolute)
+		* 45% (relative)
+	
+##Vertical:
+<div class="splitview vert abs t b l r">
+	<div class="drag v"></div> <!-- Vertical drag handle if resizable -->
+	<div class="pane left abs t b l"></div> <!-- Left pane -->
+	<div class="pane right abs t b r"></div> <!-- Right pane -->
+</div>
+
+##Horizontal:
+<div class="splitview hor abs t b l r">
+	<div class="drag h"></div> <!-- Horizontal drag handle if resizable -->
+	<div id="split1_top" class="pane top abs t r l"></div> <!-- Top pane -->
+	<div id="split1_btm" class="pane bottom abs b r l"></div> <!-- Bottom pane -->
+</div>
+*/
+.pane {
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.splitview .right {
+	margin-left: 12px;
+}
+.splitview .bottom {
+	margin-top: 12px;
+}
+
+/* @end */
+
+/* @group Drag handles for table views and split views */
+
+.drag {
+	background: #eee;
+	z-index: 100;
+	position: absolute;
+}
+
+/* .drag.v: vertical dragbar for split view */
+.drag.v {
+	top: 0;
+	bottom: 0;
+	width: 10px;
+	/*left: Initial position left: splitview left width*/	
+	border-left: 1px solid #aaa;
+	border-right: 1px solid #aaa;		
+	cursor: col-resize;
+}
+
+
+/* .drag.h: vertical dragbar for split view. For opera support, use e-resize or w-resize for cursor. */
+.drag.h {
+	left: 0;
+	right: 0;
+	height: 10px;
+	/*top: Initial position top: splitview top height*/	
+	border-top: 1px solid #aaa;	
+	border-bottom: 1px solid #aaa;
+	cursor: row-resize;
+}
+
+/* @end */
+
+/* @group Table view */
+.tableview {
+	overflow: hidden;	
+}
+.tableview table {
+	width: 1px; /*Set in order to force a table width, to avoid wierd issues when resizing columns*/
+	border-collapse: collapse;	
+	table-layout: fixed;
+}
+.tableview .drag {	
+	background: transparent;
+	width: 5px;
+	margin-left: -2px;
+	border: 0 none;
+}
+
+.tableview th, 
+.tableview td {
+	border: 1px solid #aaa;
+}
+.tableview th, 
+.tableview td,
+.tableview b,
+.tableview td .rel {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;	
+}
+.tableview b {
+	display: block;	
+	position: relative;
+}
+
+.url span {
+	padding-right: 1.8em;
+}
+.bar span,
+.pivot span {
+	display: block;
+	width: 0;
+	background: #ddd;
+	overflow: visible;
+}
+.pivot span {
+	position: relative;
+}
+.tableview .ext {
+	font-size: smaller;
+}
+/*Data types:*/
+/*Integers, floats*/
+.int,
+.fl {
+	text-align: right;
+}
+/*Strings*/
+.str,
+.url {
+	text-align: left;
+}
+/*Images, input fields*/
+.img,
+.inp,
+.mix {
+	text-align: center;
+}
+
+/* @end */
+
+/* @group Tab view */
+
+.tabview {
+	padding-bottom: 29px;	
+}
+.tabs {
+	line-height: 22px;
+	padding-top: 6px;
+}
+.tabs li {
+	display: inline;
+}
+.tabs a {
+	display: block;
+	position: relative;
+	float: left;
+	border: 1px solid #a1a1a1;
+	margin-right: 2px;
+	background-color: #ccc;
+	color: #000;
+	text-decoration: none;
+	padding: 0 5px;
+	width: 10em;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+}
+.tabs a:hover, 
+.tabs a:focus {
+	background-color: #777;
+	border-color: #777;
+	color: #fff;
+	outline: none;
+}
+.tabs a:active {
+	background-color: #666;
+	border-color: #666;
+	color: #fff;
+}
+.btn:active {
+	background-color: #666;
+	border-color: #666;
+	color: #fff;
+}
+.tabview > .data {
+	z-index:  101;
+	top:  29px;
+	border: 1px solid #a1a1a1;
+}
+.tabs .selected a,
+.tabs .selected a:hover,
+.tabs .selected a:focus {
+	cursor: default;
+	z-index:  102;
+	background-color: #fff;
+	border-color: #a1a1a1;
+	color: #000;
+	border-bottom: none;
+	height: 23px;
+}
+.overflowBtn {
+	width: 27px;
+	z-index: 103;
+	line-height: 22px;
+	font-size: 1.3em;
+	font-weight: bold;
+	text-decoration: none;
+	margin-top: 6px;
+	text-align: center;
+	color: #000;
+}
+.overflowBtn:hover {
+	color: #666
+}
+/* @end */
+
+/* @group Text view */
+
+.textview {
+	overflow: hidden;
+}
+
+.textview textarea {
+	line-height: 1.5em;
+	font: 1.2em sans-serif;
+	overflow: visible;
+	border: 0;
+	padding: 0;
+	resize: none;
+	margin: 0;	
+}
+.textview.r.l textarea {
+	width: 100%;
+}
+.textview.t.b textarea {
+	height: 100%;
+}
+
+/* @end */
+
+/* @group Toolbar */
+
+.toolbar {
+	height: 28px;
+	line-height: 28px;
+	overflow: hidden;
+	z-index: 101;	
+	background-color: #ddd;
+}
+.tbtop .toolbar {
+	border-bottom: 1px solid #aaa;
+}
+.tbbtm .toolbar {
+	border-top: 1px solid #aaa;
+}
+.toolbar ol {
+	z-index: 102;
+}
+.toolbar ul {	
+	white-space: nowrap;	
+}
+.toolbar ul li {
+	float: left;	
+}
+.toolbar p {
+	margin-left: 5px;	
+}
+.toolbar li {	
+	display: inline;
+}
+
+/* @end */
+
+/* @group Generic box */
+
+/**
+ * .box - a generic box that fills its container's width. 
+ */
+.box {
+	width: 100%;
+	height: 250px;
+}
+
+/* @end */
+
+/* @group Path view */
+
+.path {
+	background: #fff;
+	overflow: auto;
+}
+.path a {
+	display: block;
+	float: left;
+	text-decoration: none;
+	padding: 0 1em;
+}
+.path li {
+	display: inline;
+	height: 26px;
+	line-height: 26px;
+}
+
+/* @end */
+
+/* @group Buttons */
+
+/* @group Button reset */
+
+button,
+.btn { 	
+	border: 0;
+	padding: 0;
+	cursor: pointer;
+	overflow: visible; /* removes extra side padding in IE */
+	font-size: 1em;
+	text-align: center;
+	padding: 0 3px;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border: none;  /* overrides extra padding in Firefox */
+}
+
+button span,
+.btn span { 
+	position: relative;
+	display: block;
+	white-space: nowrap;
+	text-align: center;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	/* Safari and Google Chrome only - fix margins */
+	button span {
+		margin-top: -1px;
+	}
+	/*Hmmmm... This is only needed for the windows versions */
+		/*button {
+			padding: 0;
+		}*/
+}
+
+/* @end */
+button,
+.btn {
+	font-family: helvetica, arial, sans-serif;
+	background-color: #ccc;
+	border: 1px solid #a1a1a1;	
+	color: #000;
+	text-decoration: none;
+	width: auto;		
+	margin: 2px 0 2px 5px;
+	display: inline-block;
+	height: 20px;
+	line-height: 20px;
+	-webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+}
+.btn span, 
+button span {
+	line-height: 20px;
+}
+.tableview td .btn {
+	height: 1.3em;
+	line-height: 1.3em;
+	color: #000;
+	margin: 0;
+}
+.tableview .hlp b {
+	padding-left: 16px;
+}
+button:hover,
+.btn:hover,
+button:focus,
+.btn:focus {
+	outline: none;
+	background-color: #777;
+	border-color: #777;
+	color: #fff;
+}
+button:active,
+.btn:active,
+button.tt_active,
+.btn.tt_active  {
+	background-color: #666;
+	border-color: #666;
+	color: #fff;
+}
+.btn.abs {
+	position: absolute;
+}
+
+/* @group Button types */
+
+.icn_l > span {
+	padding-left: 16px;
+}
+.icn_r > span {
+	padding-right: 16px;
+}
+.disclose > span {
+	padding-right: 13px;
+}
+.disclose > span::after {
+	content:'\25BE';
+	position: absolute;
+	right: 2px;
+	font-size: 12px;
+	color: #444;
+}
+.disclose:hover > span::after,
+.disclose:focus > span::after,
+.disclose.tt_active > span::after {
+	color: #fff;
+}
+.soloicn > span {
+	text-indent: -999em;
+	width: 12px;
+}
+
+/* @end */
+
+/* @group Group of buttons */
+
+.btngrp li {
+	display: inline;
+}
+.btngrp .first .btn,
+.btngrp .first button {
+	margin-left: 0;
+}
+/* @end */
+
+/* @group Segmented buttons */
+.sgm {
+	white-space: nowrap;
+	overflow: auto;	
+}
+.sgm button,
+.sgm .btn {
+	border-left: none;
+	margin: 2px 0;
+}
+.sgm .first button,
+.sgm .first .btn {
+	border-left: 1px solid #a1a1a1;
+}
+.sgm button:hover,
+.sgm .btn:hover {
+	border-color: #777;
+}
+.sgm li {	
+	float: left;
+}
+/* @end */
+/* @end */
+/* @group Dropdown */
+
+.dropdown {
+	z-index: 102;
+	max-width: 15em;
+	min-width: 10em;
+	background: #fff;
+	padding: 3px 0;
+	border: 1px solid #a1a1a1;
+}
+.dropdown a {
+	display: block;
+	color: #000;
+	padding: 0 1.8em;
+	position: relative;
+	line-height: 1.8em;
+	text-decoration: none;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	-o-text-overflow: ellipsis;
+}
+.dropdown a:hover,
+.dropdown a:focus {
+	background: #ddd;
+}
+.dropdown a:active {
+	background: #fff;
+	color: #000;
+}
+.dropdown .selected a::before {
+	content: '\2714';
+	position: absolute;
+	left: .5em;
+}
+/* @end */
+/* @group Help icon */
+.hlp {
+	padding-left: 16px;
+	position: relative;
+	text-decoration: none;
+	outline: 0
+}
+td.hlp,
+th.hlp {
+	position: static;
+}
+.hlp .h {
+	width: 14px;
+	height: 14px;
+	text-indent: -999em;
+	overflow: hidden;
+	display: block;
+	position: absolute;
+	left: 0px;
+	top: 50%;
+	margin-top: -7px;
+	z-index: 103;
+	color: #000;
+	text-decoration: none;
+}
+.hlp .h::after,
+a.hlp::after {
+	content: '?';
+	text-indent: 0;		
+	background: #ddd;	
+	width: 12px;
+	height: 12px;
+	-moz-border-radius: 6px;
+	-webkit-border-radius: 6px;
+	line-height: 12px;
+	text-align: center;
+	font-weight: normal;
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.hlp .h:hover::after,
+.hlp .h.tt_active::after,
+a.hlp:hover::after,
+a.hlp.tt_active::after {
+	color: #fff;
+	background: #777;
+	border-color: #777;
+}
+
+/* @end */
+
+/* @group Web view */
+
+.webview iframe {
+	width: 100%;
+	height: 100%;
+	display: block;
+	border: 0 none;
+}
+
+/* @end */
+
+/* @group Tree view */
+
+.treeview li {
+	padding-left: 16px;
+	position: relative;
+}
+.treeview span {	
+}
+.toggletree {	
+	text-indent: -999em;
+	overflow: hidden;
+	position: absolute;
+	width: 12px;
+	height: 12px;
+	text-align: center;
+	top: 3px;
+	left: 0;
+	cursor: pointer;	
+}
+.toggletree::after {
+	content:'\25BE';
+
+	line-height: 8px;
+	text-align: center;
+	font-weight: bold;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 12px;
+	height: 12px;
+	text-indent: 0;
+	font-size: 14px;
+	
+}
+.closed .toggletree::after {
+	content: '\25B8';
+}
+	
+}
+/* @end */
+
+/* @group Settings view */
+.settingsview input,
+.settingsview textarea {
+	font: 1em 'lucida grande', tahoma, arial, sans-serif;
+}
+.settingsview fieldset {
+	position: relative;
+	border-bottom: 1px solid #333;
+	padding: 1em 0;
+}
+.settingsview legend {
+	position: absolute;
+	font-weight: bold;
+	text-align: right;
+	width: 10em;
+}
+.settingsview input[type="text"],
+.settingsview input[type="url"],
+.settingsview input[type="time"],
+.settingsview textarea {
+	padding: 0;
+	width: 30em;
+	display: block;
+}
+.settingsview p input:focus,
+.settingsview textarea:focus {
+	border-color: #4c7090;
+}
+.settingsview p input:invalid {
+	background: #fee;
+	border-color: #a44039;
+}
+.settingsview label {
+}
+.settingsview small {	
+	color: #aaa;
+	font-size: .8em;
+}
+.settingsview p small {
+	display: block;
+}
+.settingsview p,
+.settingsview table {
+	margin-left: 12em;
+}
+.settingsview table {
+	width: 30em;
+}
+/* @end */
+
+/* @group Range control */
+
+/* Range control.
+
+===============|_|========== <-- Range rail (.range_rail) and range button (.range_btn)
+          ------^-------
+          | 400 of 600 |  <-- Current position label (.range_indicator) and arrow/triangular marker (.arr)
+          --------------
+
+Styles this HTML structure:
+	
+<div class="range">
+	<input type="range" min="1" max="600" value="1">
+	<p class="lbl">
+		<span class="curr">1</span> of 600
+		<i class="arr"></i> <!-- Triangular Marker-->
+	</p>
+ 	<span class="rail"> <!--Slider rail-->
+		<a href="#" class="btn"></a> <!--Slider button-->
+	</span>
+</div>
+
+*/
+/* Range control container */
+.range {
+	width: 180px;
+	height: 22px;
+	display: inline-block;
+	vertical-align: bottom;
+}
+/* Place the range input off-screen. */
+input[type="range"].replaced {
+	width: 100%;
+	margin-left: -9999em;
+	position: absolute;
+	display: none;
+}
+/* Current position label */
+.lbl {
+	border: 1px solid #C6C6D7;
+	background: #fff;
+	padding: .5em;
+	display: inline;
+	position: absolute;		
+	text-align: center;
+	opacity: 0;	
+	z-index: -1;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-webkit-transition: opacity .25s ease-in-out;
+	margin-top: 25px;
+}
+.lbl.sliding,
+.lbl.hover {
+	opacity: 1;
+	z-index: 1001;
+	-webkit-transition: opacity .25s ease-in-out;
+	-moz-transition: opacity .25s ease-in-out;
+	transition: opacity .25s ease-in-out;
+}
+/* Arrow / Triangular marker */
+.arr {
+	position: absolute;
+	top: -6px;
+	left: 50%;
+	width: 7px;
+	margin-left: -3.5px;
+	height: 5px;
+	display: block;	
+	background-image: url(../img/indicator.png);
+	background-position: center;
+	background-repeat:no-repeat;
+}
+/* Rail */
+.rail {
+	height: 3px;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(rgba(0,0,0,.2)), to(#fff));
+	border: 1px inset #999;
+	display: inline-block;
+	width: 100%;
+	position: relative;
+	margin: 8px 0;	
+}
+/* Button */
+.range .btn {
+	height: 20px;
+	padding: 0;
+	margin:  0;
+	position: absolute;
+	top: -10px;	
+	z-index: 1000;
+	width: 12px;
+	cursor: col-resize;
+	text-indent: -999em;
+	line-height: 20px;
+	overflow: hidden;
+}
+
+/* @end */

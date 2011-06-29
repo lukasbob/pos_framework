@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<html lang="en-GB">
+<head>
+	<meta charset="UTF-8">
+	<title>Demo</title>
+	<link rel="stylesheet" href="css/pos.css" type="text/css" media="screen">
+		<!--[if lt IE 8]>	
+			<link rel="stylesheet" href="css/pos_ie.css" type="text/css" media="all">		
+		<![endif]-->
+	<link rel="stylesheet" href="css/theme.css" type="text/css" media="screen">		
+	<style type="text/css" media="screen">
+		#sv1 > .left { width: 250px; }
+		#sv1 > .right { left: 250px; }
+		#sv1 > .drag { left: 250px; }
+	</style>
+</head>
+<body>
+	<div id="sv1" class="splitview vert abs t b l r"><div class="drag v"></div>
+		<div class="pane left abs t b l">
+			<p>Content</p>
+		</div>
+		<div class="pane right abs t b r">	
+			<div id="tabv2" class="tabview abs t r b l">
+				<ul class="tabs abs t r l">
+					<li class="first selected"><a href="webview.html"><span>Webview</span></a></li>
+					<li><a href="tableview.html"><span>Tableview</span></a></li>
+					<li><a href="settingsview.html"><span>Settingsview</span></a></li>
+					<li><a href="buttons.html"><span>Buttons</span></a></li>
+				</ul>
+				<div class="data abs t r b l">
+           <!-- Tab content container -->
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4a2.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js" charset="utf-8"></script>
+	<!-- Used so far: draggables -->
+	<script type="text/javascript" src="js/jquery.metadata.js" charset="utf-8"></script>
+	<script type="text/javascript" src="js/jquery.tablesorter.js" charset="utf-8"></script>
+	<script src="js/splitview.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/tableview.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/tabview.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/tooltip.js" type="text/javascript" charset="utf-8"></script>
+	<script src="js/range.js" type="text/javascript" charset="utf-8"></script>
+	<script type="text/javascript" charset="utf-8">	
+		$(document).ready(function(){
+			init(document);
+		});
+		function init(context) {
+			$(context).find('.splitview').splitview();
+			$(context).find('.tableview').tableview();
+			$(context).find('.tabview').tabview();
+			$(context).find('.range').range();
+			$(context).find('.disclose').tt({
+				ttClass: 'dropdown',
+				vAlign: 'below',
+				align: 'flushLeft',
+				showEvent: 'click',
+				distanceY: 0,
+				delay: 0,
+				fadeIn: 0,
+				timeOut: 150
+			});
+			$(context).find('.disclose.r').tt({
+				ttClass: 'dropdown',
+				vAlign: 'below',
+				align: 'flushRight',
+				showEvent: 'click',
+				distanceY: 0,
+				delay: 0,
+				fadeIn: 0,
+				timeOut: 150
+			});
+		};
+	</script>
+</body>
+</html>

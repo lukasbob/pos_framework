@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Test of framework for layout</title>
+	<link rel="stylesheet" href="css/pos.css" type="text/css" media="screen">
+	<!--[if lt IE 8]>
+		<link rel="stylesheet" href="css/pos_ie.css" type="text/css" media="all">
+	<![endif]-->
+
+<link rel="stylesheet" href="css/theme.css" type="text/css" media="screen">
+	<style type="text/css" media="screen">
+		#sv1 > .left { width: 50%; }
+		#sv1 > .right { left: 50%; }
+		#sv1 > .drag { left: 50%; }
+		#sv2 > .top { height: 45%; }
+		#sv2 > .bottom { top: 45%; }
+		#sv2 > .drag { top: 45%; }
+		#sv3 > .top { height: 50%; }
+		#sv3 > .bottom { top: 50%; }
+		#sv3 > .drag { top: 50%; }
+	</style>
+</head>
+<body class="full">
+<!-- Mast -->
+<div class="abs l r t" style="height: 26px;">
+	<h1>Siteimprove</h1>
+</div>
+<!-- Wrapper -->
+<div class="abs t r l" style="bottom: 26px; top: 26px;">
+
+
+
+<div id="sv1" class="splitview vert abs t b l r"><div class="drag v"></div>
+	<!-- sv1 left pane -->
+	<div id="nav" class="pane left abs t b l">
+		<div id="sv3" class="splitview hor abs t b l r {margin:{top:250,right:0,bottom:100,left:0}}"><div class="drag h"></div>
+		<!-- sv3 top pane -->
+		<div class="pane top abs t r l">
+			<div class="tableview abs t r b l tbtop">
+				<form action="tv2.aspx" method="get" accept-charset="utf-8">
+					<!-- Table sorting -->
+					<input type="hidden" name="tv2_th1" value="asc" id="tv2_th1">
+					<input type="hidden" name="tv2_th2" value="" id="tv2_th2">
+					<div class="toolbar abs t r l">
+						<ul class="abs t r">
+							<li>
+								<p>
+									<label for="tv2_rows">Rows: </label>
+									<select name="tv2_rows" id="tv1_rows">
+										<option value="10">10</option>
+										<option value="25">25</option>
+										<option value="50">50</option>
+									</select>
+								</p>
+							</li>
+							<li>
+								<ol class="sgm">
+									<li class="first"><button class="first"><span>First</span></button></li>
+									<li><button class="prev"><span>Previous</span></button></li>
+									<li><button class="next"><span>Next</span></button></li>
+									<li><button class="last"><span>Last</span></button></li>
+								</ol>
+							</li>
+						</ul>
+					</div>
+				</form>
+
+
+				<div class="data abs t r l b">
+					<table class="loaded" style="width:240px;" summary="This is a required short description of the purpose and content of this table.">
+						<thead>
+							<tr>
+								<th scope="col" abbr="BR" class="str res" style="width:100px;">Browser</th>
+								<th scope="col" abbr="V" class="int res" style="width:50px">Visits</th>
+								<th scope="col" class="str res" style="width:89px">%</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr><td class="str">Internet Explorer</td><td class="int">1487</td><td class="bar"><span style="text-indent: 35.3%; width: 35.3%;"> 35.3%</span></td></tr>
+							<tr><td class="str">Firefox</td><td class="int">489</td><td class="bar"><span style="text-indent: 11.6%; width: 11.6%;"> 11.6%</span></td></tr>
+							<tr><td class="str">Chrome</td><td class="int">475</td><td class="bar"><span style="text-indent: 11.3%; width: 11.3%;"> 11.3%</span></td></tr>
+							<tr><td class="str">Safari</td><td class="int">350</td><td class="bar"><span style="text-indent: 8.3%; width: 8.3%;"> 8.3%</span></td></tr>
+							<tr><td class="str">Mobile</td><td class="int">341</td><td class="bar"><span style="text-indent: 8.1%; width: 8.1%;"> 8.1%</span></td></tr>
+							<tr><td class="str">Opera</td><td class="int">321</td><td class="bar"><span style="text-indent: 7.6%; width: 7.6%;"> 7.6%</span></td></tr>
+							<tr><td class="str">Mozilla compatible</td><td class="int">268</td><td class="bar"><span style="text-indent: 6.4%; width: 6.4%;"> 6.4%</span></td></tr>
+							<tr><td class="str">Unknown</td><td class="int">241</td><td class="bar"><span style="text-indent: 5.7%; width: 5.7%;"> 5.7%</span></td></tr>
+							<tr><td class="str">Konqueror</td><td class="int">145</td><td class="bar"><span style="text-indent: 3.4%; width: 3.4%;"> 3.4%</span></td></tr>
+							<tr><td class="str">1</td><td class="int">98</td><td class="bar"><span style="text-indent: 2.3%; width: 2.3%;"> 2.3%</span></td></tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<!-- sv3 bottom pane -->
+		<div class="pane bottom abs b r l">
+			<div class="toolbar abs b r l">
+				<ol class="abs r">
+					<li class="first"><button><span>Save</span></button></li>
+					<li><a class="btn" href="#"><span>Cancel</span></a></li>
+				</ol>
+			</div>
+
+			<div id="tabv2" class="tabview abs t r b l tbbtm">
+				<ul class="tabs abs t r l">
+					<li class="first selected"><a href="#tabv2_tab1"><span>Site settings</span></a></li>
+					<li class=""><a href="#tabv2_tab2"><span>Metadata</span></a></li>
+				</ul>
+				<div class="data abs t r b l">
+					<div id="tabv2_tab1" class="tabcontent selected">
+					<!-- Settings start -->
+						<form class="settingsview" action="/bla.html" method="get">
+							<fieldset>
+								<legend>Site Information</legend>
+								<p>
+									<label for="textfield1">Site Name: </label>
+									<input type="text" name="textfield1" id="textfield1" placeholder="My site">
+									<small>The name of the site is used within SiteCheck.</small>
+								</p>
+								<p>
+									<label for="textfield2">Site URL: </label>
+									<input type="url" name="textfield2" id="textfield2" placeholder="http://example.com">
+									<small>This URL is the designated starting point for SiteCheck.</small>
+								</p>
+								<p>
+									<label for="textfield3">Time: </label>
+									<input type="time" name="textfield3" id="textfield3" placeholder="Time of day">
+									<small>Time.</small>
+								</p>
+								<p>
+									<input type="checkbox" name="robots" id="checkbox1">
+									<label for="checkbox1">Respect robots.txt</label>
+									<small>The Robots Exclusion Standard can provide information to crawlers about what it is allowed to crawl.</small>
+								</p>
+							</fieldset>
+							<fieldset>
+								<legend>Exclusions</legend>
+								<p>
+									<label for="textarea1">Enter one exclusion pattern per line:</label>
+									<textarea id="textarea1" rows="6" cols="10" name="exclusions" placeholder="/path/to/exclusion"></textarea>
+									<small>If a page URL matches one of the patterns inserted here, it will not be checked by SiteCheck.</small>
+								</p>
+							</fieldset>
+							<fieldset>
+								<legend>Aliases</legend>
+								<p>
+									<label for="textarea2">Enter one alias per line:</label>
+									<textarea id="textarea2" rows="6" cols="10" name="aliases" placeholder="http://otherdomain.com"></textarea>
+									<small>Use aliases to include content that would not otherwise be included in SiteCheck.</small>
+								</p>
+							</fieldset>
+						</form>
+						<!-- Settings end -->
+					</div>
+					<!-- Tab 1 end -->
+					<!-- Tab 2 -->
+					<div id="tabv2_tab2" class="tabcontent">
+						<form class="settingsview" method="get" action="adsfdsaf.html">
+							<fieldset>
+								<legend>Metadata</legend>
+								<p><small>From the content that we know of currently, these meta tags are available on your site. </small></p>
+								<p><small>The metadata may be <strong>exposed</strong> for use as replacement tokens in e.g. CMS integration, and/or <strong>groups</strong> can be created for each unique value that appears in the <code>content</code> attribute, separated by semicolons (<strong>;</strong>).</small></p>
+								<table>
+									<colgroup>
+										<col width="50px">
+										<col>
+										<col width="50px">
+									</colgroup>
+									<thead>
+										<tr>
+											<th scope="col" class="inp">Expose</th>
+											<th scope="col" class="str">Name</th>
+											<th scope="col" class="inp">Groups</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td class="inp"><input type="checkbox" name="asdf" id="expose0"></td>
+											<td class="str"><label for="expose0">ID <small>(5,847 unique values)</small></label></td>
+											<td class="inp"><input type="checkbox" name="asdf" id="groups0"></td>
+										</tr>
+										<tr>
+											<td class="inp"><input type="checkbox" name="asdf" id="expose1"></td>
+											<td class="str"><label for="expose1">DC.description <small>(3,345 unique values)</small></label></td>
+											<td class="inp"><input type="checkbox" name="asdf" id="groups1"></td>
+										</tr>
+										<tr>
+											<td class="inp"><input type="checkbox" name="asdf" id="expose2"></td>
+											<td class="str"><label for="expose2">DC.keywords  <small>(45 unique values)</small></label></td>
+											<td class="inp"><input type="checkbox" name="asdf" id="groups2"></td>
+										</tr>
+										<tr>
+											<td class="inp"><input type="checkbox" name="asdf" id="expose4"></td>
+											<td class="str"><label for="expose4">DC.creator <small>(74 unique values)</small></label></td>
+											<td class="inp"><input type="checkbox" name="asdf" id="groups4"></td>
+										</tr>
+										<tr>
+											<td class="inp"><input type="checkbox" name="asdf" id="expose3"></td>
+											<td class="str"><label for="expose3">DC.date.modified  <small>(4,000 unique values)</small></label></td>
+											<td class="inp"><input type="checkbox" name="asdf" id="groups3"></td>
+										</tr>
+										<tr>
+											<td class="inp"><input type="checkbox" name="asdf" id="expose5"></td>
+											<td class="str"><label for="expose5">DC.date.created <small>(3,345 unique values)</small></label></td>
+											<td class="inp"><input type="checkbox" name="asdf" id="groups5"></td>
+										</tr>
+									</tbody>
+								</table>
+							</fieldset>
+						</form>
+					</div>
+					<!-- Tab 2 end -->
+				</div>
+				</div>
+			</div>
+		</div>
+		<!-- sv3 bottom pane ends -->
+	</div>
+	<!-- sv 1 right pane -->
+	<div id="content" class="pane right abs t b r">
+		<div id="sv2" class="splitview hor abs t b l r"><div class="drag h"></div>
+			<!-- sv2 top pane -->
+			<div class="pane top abs t r l">
+				<!-- Tab view -->
+				<div id="tabv1" class="tabview abs t r b l">
+					<ul class="tabs abs t r l">
+						<li class="first"><a href="#tabv1_tab1"><span>Web view example</span></a></li>
+						<li><a href="#tabv1_tab2"><span>Tree view example</span></a></li>
+						<li class="selected"><a href="#tabv1_tab3"><span>Button examples</span></a></li>
+						<li><a href="#tabv1_tab4"><span>Visitors</span></a></li>
+						<li class="last"><a href="#tabv1_tab5"><span>Table view example</span></a></li>
+					</ul>
+					<div class="data abs t r b l">
+						<div id="tabv1_tab1" class="tabcontent selected">
+							<div class="webview abs t r b l">
+								<iframe src="http://www.google.com" name="wv1" frameborder="0" class="abs t r b l">
+									<p>Web view of <a href="http://www.google.com">http://www.google.com</a></p>
+								</iframe>
+							</div>
+						</div>
+						<div id="tabv1_tab2" class="tabcontent">
+							<div class="treeview">
+								<div class="data">
+									<ul>
+										<li class="parent"><span>[any item goes here]</span>
+											<ul>
+												<li><span>[any item goes here]</span></li>
+												<li><span>[any item goes here]</span></li>
+												<li><span>[any item goes here]</span></li>
+												<li><span>[any item goes here]</span></li>
+												<li><span>[any item goes here]</span></li>
+												<li><span>[any item goes here]</span>
+													<ul>
+														<li><span>[any item goes here]</span></li>
+														<li><span>[any item goes here]</span></li>
+														<li><span>[any item goes here]</span></li>
+														<li><span>[any item goes here]</span></li>
+														<li><span>[any item goes here]</span>
+															<ul>
+																<li><span>[any item goes here]</span></li>
+																<li><span>[any item goes here]</span></li>
+																<li><span>[any item goes here]</span></li>
+																<li><span>[any item goes here]</span></li>
+																<li><span>[any item goes here]</span></li>
+																<li><span>[any item goes here]</span></li>
+															</ul>
+														</li>
+														<li><span>[any item goes here]</span>
+															<ul>
+																<li><span>[any item goes here]</span></li>
+																<li><span>[any item goes here]</span></li>
+																<li><span>[any item goes here]</span></li>
+																<li><span>[any item goes here]</span></li>
+																<li><span>[any item goes here]</span></li>
+																<li><span>[any item goes here]</span></li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<div id="tabv1_tab3" class="tabcontent selected">
+							<h3>Buttons</h3>
+							<p>Segmented button group:</p>
+							<ol class="sgm">
+								<li class="first"><button><span>First</span></button></li>
+								<li><button class="icn_l"><span>w/ icon, left</span></button></li>
+								<li><button class="icn_r"><span>w/ icon, right</span></button></li>
+								<li><a href="#" class="btn icn_l"><span>Link, w/ icon</span></a></li>
+								<li><a class="btn disclose" href="#tt_disc1" id="disc1"><span>Disclosure</span></a></li>
+								<li><button class="soloicn" title="Just an icon"><span>Icon only</span></button></li>
+								<li class="last"><button><span>Last</span></button></li>
+							</ol>
+							<p>Single buttons:</p>
+							<ul class="btngrp">
+								<li class="first"><a class="btn" href="#"><span>Cancel</span></a></li>
+								<li class="last"><button><span>Save</span></button></li>
+							</ul>
+							<p>Range control:</p>
+							<div class="range">
+								<input type="range" min="1" max="600" value="1">
+								<p class="lbl">
+									<span class="curr">1</span> of 600
+								</p>
+							</div>
+
+
+							<p>Use cases:</p>
+							<ol class="sgm">
+								<li class="first"><button><span>Run report</span></button></li>
+								<li><a class="btn disclose r" href="#tt_disc1" id="disc1" title="Options"><span></span></a></li>
+							</ol>
+						</div>
+						<div id="tabv1_tab4" class="tabcontent">
+							<h3>Tab 2</h3>
+							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris <a class="hlp" href="#tt_help3" id="help3">enim</a> ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+							<ul>
+								<li class="hlp">Dansk Magisterforening<a class="h" href="#tt_help2" id="help2">Definition</a></li>
+							</ul>
+						</div>
+						<div id="tabv1_tab5" class="tabcontent">
+							<!-- Nested tableview -->
+							<div id="tv1" class="tableview tbtop abs t r b l {minColWidth: 50}">
+								<form action="tv1.aspx" method="get" accept-charset="utf-8">
+									<!-- Table sorting -->
+									<input type="hidden" name="tv1_th1" value="asc" id="tv1_th1">
+									<input type="hidden" name="tv1_th2" value="" id="tv1_th2">
+									<input type="hidden" name="tv1_th3" value="" id="tv1_th3">
+									<input type="hidden" name="tv1_th4" value="" id="tv1_th4">
+									<div class="toolbar abs t r l">
+										<p>
+											<label for="tv1_export">Export data as: </label>
+											<select name="tv1_export" id="tv1_export">
+												<option value="">Select a format:</option>
+												<option value="excel">Excel</option>
+												<option value="csv">CSV</option>
+												<option value="pdf">PDF</option>
+											</select>
+										</p>
+										<ul class="abs t r">
+											<li>
+												<p>
+													<label for="tv1_rows">Rows: </label>
+													<select name="tv1_rows" id="tv1_rows">
+														<option value="10">10</option>
+														<option value="25">25</option>
+														<option value="50">50</option>
+														<option value="100">100</option>
+														<option value="500">500</option>
+														<option value="1000">1000</option>
+													</select>
+												</p>
+											</li>
+											<li>
+												<ol class="sgm">
+													<li class="first"><button class="first"><span>First</span></button></li>
+													<li><button class="prev"><span>Previous</span></button></li>
+													<li><button class="next"><span>Next</span></button></li>
+													<li><button class="last"><span>Last</span></button></li>
+												</ol>
+											</li>
+										</ul>
+									</div>
+								</form>
+								<div class="data abs t r b l">
+									<table class="loaded" summary="This is a required short description of the purpose and content of this table." style="width:750px;">
+										<colgroup>
+											<col>
+											<col>
+											<col>
+											<col>
+										</colgroup>
+										<thead>
+											<tr>
+												<th scope="col" class="url res {minColWidth: 100} hlp" style="width: 250px;" abbr="URL">URL <a id="help1" class="h" href="#tt_help1">Definition</a></th>
+												<th scope="col" class="int res" style="width: 75px;" abbr="PV">Page views</th>
+												<th scope="col" class="str res" style="width: 300px">%</th>
+												<th scope="col" class="pivot res" style="width: 300px" abbr="vs. avg. PV">vs. average page views for the site</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr>
+												<td class="url"><span class="rel"><a href="#">/</a> <a class="ext abs r" href="http://siteimprove.com/">Go</a></span></td>
+												<td class="int">156</td>
+												<td class="bar"><span style="text-indent: 8.4%; width: 8.4%;"> 8.4%</span></td>
+												<td class="pivot"><span>1336%</span></td>
+											</tr>
+											<tr>
+
+												<td class="url"><span class="rel"><a href="#">/Support.aspx</a> <a class="ext abs r" href="http://siteimprove.com/Support.aspx">Go</a></span></td>
+												<td class="int">456</td>
+												<td class="bar"><span style="text-indent: 24.6%; width: 24.6%;"> 24.6%</span></td>
+												<td class="pivot"><span>-1425%</span></td>
+											</tr>
+											<tr>
+
+												<td class="url"><span class="rel"><a href="#">/Solutions/SiteCheck.aspx</a> <a class="ext abs r" href="http://siteimprove.com/Solutions/SiteCheck.aspx">Go</a></span></td>
+												<td class="int">984</td>
+												<td class="bar"><span style="text-indent: 53.2%; width: 53.2%;"> 53.2%</span></td>
+												<td class="pivot"><span>-255%</span></td>
+											</tr>
+											<tr>
+
+												<td class="url"><span class="rel"><a href="#">/Solutions/SiteCheck/Terms.aspx</a> <a class="ext abs r" href="http://siteimprove.com/Solutions/SiteCheck/Terms.aspx">Go</a></span></td>
+												<td class="int">26</td>
+												<td class="bar"><span style="text-indent: 1.4%; width: 1.4%;"> 1.4%</span></td>
+												<td class="pivot"><span>452%</span></td>
+											</tr>
+											<tr>
+
+												<td class="url"><span class="rel"><a href="#">/About_Us.aspx</a> <a class="ext abs r" href="http://siteimprove.com/About_Us.aspx">Go</a></span></td>
+												<td class="int">210</td>
+												<td class="bar"><span style="text-indent: 11.3%; width: 11.3%;"> 11.3%</span></td>
+												<td class="pivot"><span>265%</span></td>
+											</tr>
+											<tr>
+
+												<td class="url"><span class="rel"><a href="#">/About_Us/Contact_Us.aspx</a> <a class="ext abs r" href="http://siteimprove.com/About_Us/Contact_Us.aspx">Go</a></span></td>
+												<td class="int">19</td>
+												<td class="bar"><span style="text-indent: 1.0%; width: 1.0%;"> 1.0%</span></td>
+												<td class="pivot"><span>1145%</span></td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+							<!-- Nested table view ends -->
+
+						</div>
+					</div>
+				</div>
+				<!-- Tab view ends -->
+
+
+
+			</div>
+			<!-- sv2 bottom pane -->
+			<div class="pane bottom abs b r l">
+				<div class="textview tbbtm abs t r b l">
+					<div class="toolbar abs b r l">
+						<ol class="abs r">
+							<li class="first"><button><span>Save</span></button></li>
+							<li><a class="btn" href="#"><span>Cancel</span></a></li>
+						</ol>
+					</div>
+					<div class="data abs t r l b">
+						<textarea cols="100" rows="50" class="abs" name="number1" title="Obligatory title used in place of a label when it is not possible to provide one.">This is a textview, used to provide a text field that can stretch to fit the parent view.</textarea>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</div>
+<div class="abs b r l">
+	<div class="path">
+		<ol>
+			<li><a href="/">Home</a></li>
+			<li><a href="/">SiteAnalyze</a></li>
+			<li><a href="/">Traffic</a></li>
+		</ol>
+	</div>
+</div>
+
+<!-- Disclosure boxes: -->
+<ul id="tt_disc1">
+	<li><a href="#">Item 1</a></li>
+	<li><a href="#">Item 2</a></li>
+	<li><a href="#">Item 3</a></li>
+	<li><a href="#">Item 4</a></li>
+</ul>
+<!-- Help boxes -->
+<div id="tt_help1">
+	<h3>URL</h3>
+	<p>Web location for the page or resource.</p>
+</div>
+<div id="tt_help2">
+	<h3>URL</h3>
+	<p>Web location for the page or resource.</p>
+</div>
+<div id="tt_help3">
+	<h3>URL</h3>
+	<p>Web location for the page or resource.</p>
+</div>
+
+
+
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.4a2.min.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/jquery-ui.min.js" charset="utf-8"></script>
+<!-- Used so far: draggables -->
+<script type="text/javascript" src="js/jquery.metadata.js" charset="utf-8"></script>
+<script type="text/javascript" src="js/jquery.tablesorter.js" charset="utf-8"></script>
+<script src="js/splitview.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/tableview.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/tabview.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/tooltip.js" type="text/javascript" charset="utf-8"></script>
+<script src="js/range.js" type="text/javascript" charset="utf-8"></script>
+
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		$('.treeview').each(function() {
+			var $$ = $(this);
+			var parents = $$.find('li:has(>ul)').addClass('parent closed');
+			parents.each(function() {
+				var parent = $(this);
+				var ul = parent.find('>ul').hide();
+				$('<span class="toggletree">Toggle items</span>').click(function() {
+					parent.toggleClass('closed');
+					ul.toggle();
+				}).prependTo(parent);
+			});
+		});
+
+		$('.webview').each(function() {
+			var $$ = $(this);
+		});
+
+		$('.splitview').splitview();
+		$('.tableview').tableview();
+		$('.tabview').tabview();
+		$('.range').range();
+		$('.hlp a, a.hlp').tt({
+			showEvent: 'click',
+			timeOut: 150,
+			delay: 0
+		}).click(function() {return false;});
+		$('.disclose').tt({
+			ttClass: 'dropdown',
+			vAlign: 'below',
+			align: 'flushLeft',
+			showEvent: 'click',
+			distanceY: 0,
+			delay: 0,
+			fadeIn: 0,
+			timeOut: 150
+		});
+		$('.disclose.r').tt({
+			ttClass: 'dropdown',
+			vAlign: 'below',
+			align: 'flushRight',
+			showEvent: 'click',
+			distanceY: 0,
+			delay: 0,
+			fadeIn: 0,
+			timeOut: 150
+		});
+
+		$(window).resize(function() {
+			$('.drag').trigger('resize');
+		});
+	});
+</script>
+
+</body>
+</html>

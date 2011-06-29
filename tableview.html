@@ -1,0 +1,52 @@
+<div class="tableview abs t r b l tbtop">
+	<form action="tv2.aspx" method="get" accept-charset="utf-8">
+		<!-- Table sorting -->
+		<input type="hidden" name="tv2_th1" value="asc" id="tv2_th1">
+		<input type="hidden" name="tv2_th2" value="" id="tv2_th2">
+		<div class="toolbar abs t r l">
+			<ul class="abs t r">
+				<li>
+					<p>
+						<label for="tv2_rows">Rows: </label>
+						<select name="tv2_rows" id="tv1_rows">
+							<option value="10">10</option>
+							<option value="25">25</option>
+							<option value="50">50</option>
+						</select>
+					</p>
+				</li>
+				<li>
+					<ol class="sgm">
+						<li class="first"><button class="first"><span>First</span></button></li>
+						<li><button class="prev"><span>Previous</span></button></li>
+						<li><button class="next"><span>Next</span></button></li>
+						<li><button class="last"><span>Last</span></button></li>
+					</ol>
+				</li>
+			</ul>
+		</div>
+	</form>
+	<div class="data abs t r l b">
+		<table class="loaded" summary="This is a required short description of the purpose and content of this table.">
+			<thead>
+				<tr>
+					<th scope="col" abbr="BR" class="str res" style="width:500px;">Browser</th>
+					<th scope="col" abbr="V" class="int res" style="width:50px">Visits</th>
+					<th scope="col" class="str res" style="width:89px">%</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr><td class="str">Internet Explorer</td><td class="int">1487</td><td class="bar"><span style="text-indent: 35.3%; width: 35.3%;"> 35.3%</span></td></tr>
+				<tr><td class="str">Firefox</td><td class="int">489</td><td class="bar"><span style="text-indent: 11.6%; width: 11.6%;"> 11.6%</span></td></tr>
+				<tr><td class="str">Chrome</td><td class="int">475</td><td class="bar"><span style="text-indent: 11.3%; width: 11.3%;"> 11.3%</span></td></tr>
+				<tr><td class="str">Safari</td><td class="int">350</td><td class="bar"><span style="text-indent: 8.3%; width: 8.3%;"> 8.3%</span></td></tr>
+				<tr><td class="str">Mobile</td><td class="int">341</td><td class="bar"><span style="text-indent: 8.1%; width: 8.1%;"> 8.1%</span></td></tr>
+				<tr><td class="str">Opera</td><td class="int">321</td><td class="bar"><span style="text-indent: 7.6%; width: 7.6%;"> 7.6%</span></td></tr>
+				<tr><td class="str">Mozilla compatible</td><td class="int">268</td><td class="bar"><span style="text-indent: 6.4%; width: 6.4%;"> 6.4%</span></td></tr>
+				<tr><td class="str">Unknown</td><td class="int">241</td><td class="bar"><span style="text-indent: 5.7%; width: 5.7%;"> 5.7%</span></td></tr>
+				<tr><td class="str">Konqueror</td><td class="int">145</td><td class="bar"><span style="text-indent: 3.4%; width: 3.4%;"> 3.4%</span></td></tr>
+				<tr><td class="str">1</td><td class="int">98</td><td class="bar"><span style="text-indent: 2.3%; width: 2.3%;"> 2.3%</span></td></tr>
+			</tbody>
+		</table>
+	</div>
+</div>
